@@ -10,7 +10,7 @@ public class Funcionario {
 	public Funcionario(String nome) {
 		this.nome = nome;
 	}
-
+    //Construtor padrão /defaut (que é a mesma coisa so que em linguagem diferente)
 	public Funcionario() {
 
 	}
