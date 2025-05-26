@@ -6,8 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.UUID;
 
+import br.dev.vinicius.tarefas.dao.FuncionarioDAO;
 import br.dev.vinicius.tarefas.model.Funcionario;
+import br.dev.vinicius.tarefas.ui.FrameFuncionario;
+import br.dev.vinicius.tarefas.utils.Utils;
 
 public class Main {
 
@@ -15,15 +19,17 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Funcionario funcionario1 = new Funcionario("Maria da Silva");
-		Funcionario funcionario2 = new Funcionario();
-		Funcionario funcionario3 = new Funcionario("Programador", "Maria");
-		Funcionario funcionario4 = new Funcionario("Programador", "Pedro", 2);
 		
-		System.out.println(funcionario1);
-		System.out.println(funcionario2);
-		System.out.println(funcionario3);
-		System.out.println(funcionario4);
+		new FrameFuncionario();
+		
+//		Funcionario f = new Funcionario();
+//		f.setNome("Zacarias");
+//		f.setCargo("Zelador");
+//		f.setSalario(1200.50);
+//		
+//		FuncionarioDAO dao = new FuncionarioDAO(f);
+//		dao.gravar();
+	
 
 	}
 

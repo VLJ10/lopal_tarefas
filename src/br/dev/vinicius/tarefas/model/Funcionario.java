@@ -1,44 +1,51 @@
 package br.dev.vinicius.tarefas.model;
 
+import br.dev.vinicius.tarefas.utils.Utils;
+
 public class Funcionario {
 
 	private String nome;
-	private int matricula;
+	private String matricula;
 	private String cargo;
+	private double salario;
 
 	// método construtor
 	public Funcionario(String nome) {
 		this.nome = nome;
+		this.matricula = Utils.gerarUUID8();
 	}
     //Construtor padrão /defaut (que é a mesma coisa so que em linguagem diferente)
 	public Funcionario() {
-
+		this.matricula = Utils.gerarUUID8();
 	}
 
 	public Funcionario(String cargo, String nome) {
 		this.cargo = cargo;
 		this.nome = nome;
+		this.matricula = Utils.gerarUUID8();
 	}
 
-	public Funcionario(String cargo, String nome, int matricula) {
+	public Funcionario(String cargo, String nome, double salario) {
 		this.cargo = cargo;
 		this.nome = nome;
-		this.matricula = matricula;
+		this.matricula = Utils.gerarUUID8();
+		this.salario = salario;
 	}
 
 	public String getNome() {
 		return nome;
+		
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	public int getMatricula() {
+	public String getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula(int matricula) {
+	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
 
@@ -50,9 +57,17 @@ public class Funcionario {
 		this.cargo = cargo;
 	}
 	
+	public double getSalario() {
+		return salario;
+	}
+	
+	public void setSalario(double salario) {
+		this.salario = salario;
+	}
+	
 	@Override
 	public String toString() {
-		String funcionario = matricula + "," + nome + "," + cargo + "\n";
+		String funcionario = matricula + "," + nome + "," + cargo + "," + salario + "\n";
 		return funcionario;
 	}
 
