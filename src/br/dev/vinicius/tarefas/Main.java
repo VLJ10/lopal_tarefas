@@ -6,13 +6,17 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
 import br.dev.vinicius.tarefas.dao.FuncionarioDAO;
+import br.dev.vinicius.tarefas.dao.TarefasDAO;
 import br.dev.vinicius.tarefas.model.Funcionario;
+import br.dev.vinicius.tarefas.model.Tarefas;
 import br.dev.vinicius.tarefas.ui.FrameFuncionario;
 import br.dev.vinicius.tarefas.ui.FrameFuncionarioList;
 import br.dev.vinicius.tarefas.utils.Utils;
@@ -24,8 +28,25 @@ public class Main {
 	public static void main(String[] args) {
 		
 		
+		new Tarefas();
 		
-	    new FrameFuncionarioList();
+		
+		
+		
+        
+		Tarefas t = new Tarefas();
+		t.setTitulo("Lave a Louça");
+		t.setDescrição("Lava direito e seque");
+		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		t.setInicio(LocalDate.parse("10/10/2020" , formatter));
+		t.setPrazo(3);
+		
+		TarefasDAO dao = new TarefasDAO(t); 
+		dao.gravar();
+		
+		
+		
+//	    new FrameFuncionarioList();
 //		new FrameFuncionario();
 		
 //		FuncionarioDAO dao = new FuncionarioDAO();
