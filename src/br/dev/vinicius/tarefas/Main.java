@@ -19,6 +19,7 @@ import br.dev.vinicius.tarefas.model.Funcionario;
 import br.dev.vinicius.tarefas.model.Tarefas;
 import br.dev.vinicius.tarefas.ui.FrameFuncionario;
 import br.dev.vinicius.tarefas.ui.FrameFuncionarioList;
+import br.dev.vinicius.tarefas.ui.FrameInicio;
 import br.dev.vinicius.tarefas.utils.Utils;
 
 public class Main {
@@ -28,23 +29,20 @@ public class Main {
 	public static void main(String[] args) {
 		
 		
-		new Tarefas();
+		new FrameInicio();
 		
 		
-		
-		
-        
-		Tarefas t = new Tarefas();
-		t.setTitulo("Lave a Louça");
-		t.setDescrição("Lava direito e seque");
-		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		t.setInicio(LocalDate.parse("10/10/2020" , formatter));
-		t.setPrazo(3);
-		
-		TarefasDAO dao = new TarefasDAO(t); 
-		dao.gravar();
-		
-		
+//		new Tarefas();
+//		
+//		Tarefas t = new Tarefas();
+//		t.setTitulo("Lave a Louça");
+//		t.setDescrição("Lava direito e seque");
+//		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//		t.setInicio(LocalDate.parse("10/10/2020" , formatter));
+//		t.setPrazo(3);
+//		
+//		TarefasDAO dao = new TarefasDAO(t); 
+//		dao.gravar();
 		
 //	    new FrameFuncionarioList();
 //		new FrameFuncionario();
