@@ -20,6 +20,7 @@ import br.dev.vinicius.tarefas.model.Tarefas;
 import br.dev.vinicius.tarefas.ui.FrameFuncionario;
 import br.dev.vinicius.tarefas.ui.FrameFuncionarioList;
 import br.dev.vinicius.tarefas.ui.FrameInicio;
+import br.dev.vinicius.tarefas.ui.FrameTarefasList;
 import br.dev.vinicius.tarefas.utils.Utils;
 
 public class Main {
@@ -30,6 +31,7 @@ public class Main {
 		
 		
 		new FrameInicio();
+//		new FrameTarefasList(null);
 		
 		
 //		new Tarefas();

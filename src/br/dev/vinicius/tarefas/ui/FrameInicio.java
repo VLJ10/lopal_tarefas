@@ -2,6 +2,8 @@ package br.dev.vinicius.tarefas.ui;
 
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -32,10 +34,33 @@ public class FrameInicio {
 		labelTitulo.setFont(new Font("Century", Font.BOLD, 18));
 		
 		btnTarefas = new JButton("Tarefas");
-		btnTarefas.setFont(new Font("Century", Font.PLAIN, 18));
-		btnTarefas.setBounds(20, 80, 100, 30);
+		btnTarefas.setFont(new Font("Century", Font.PLAIN, 15));
+		btnTarefas.setBounds(10, 80, 120, 30);
 		
+		btnFuncionario = new JButton("Funcionario");
+		btnFuncionario.setFont(new Font("Century", Font.PLAIN, 15));
+		btnFuncionario.setBounds(150, 80, 120, 30);
 		
+		btnFuncionario.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			   new FrameFuncionarioList(tela);
+			   
+				
+			}
+		});
+		
+		btnTarefas.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new FrameTarefasList(tela);
+				
+			}
+		});
+		
+		painel.add(btnFuncionario);
 		painel.add(labelTitulo);
 		painel.add(btnTarefas);
 		

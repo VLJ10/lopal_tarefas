@@ -54,8 +54,8 @@ public class TarefasDAO {
 					Tarefas tarefa = new Tarefas();
 					tarefa.setTitulo(tarefasStr[0]);
 					tarefa.setDescrição(tarefasStr[1]);
-					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-					tarefa.setInicio(LocalDate.parse(tarefasStr[2], formatter));
+					
+					tarefa.setInicio(LocalDate.parse(tarefasStr[2]));
 					tarefa.setPrazo(Integer.parseInt(tarefasStr[3]));
 					
 					tarefas.add(tarefa);

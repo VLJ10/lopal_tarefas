@@ -16,29 +16,31 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import br.dev.vinicius.tarefas.dao.FuncionarioDAO;
+import br.dev.vinicius.tarefas.dao.TarefasDAO;
 import br.dev.vinicius.tarefas.model.Funcionario;
+import br.dev.vinicius.tarefas.model.Tarefas;
 
-public class FrameFuncionarioList {
-	
+public class FrameTarefasList {
+
 	private JLabel labelTitulo;
 	private JButton btnCadastro;
-	private JTable tabelaFuncionario;
-	private JScrollPane scrollFuncionario;
-	private DefaultTableModel modelFuncionario;
-	private String[] colunas = {"CÓDIGO", "NOME", "CARGO"};
+	private JTable tabelaTarefas;
+	private JScrollPane scrollTarefas;
+	private DefaultTableModel modelTarefas;
+	private String[] colunas = {"CODIGO", "RESPONSAVEL", "INICIO", "CONCLUSÂO"};
 	
-	public FrameFuncionarioList (JFrame frameList) {
+	public FrameTarefasList (JFrame frameList) {
 		criarTela(frameList);
 	}
 	
 	private void criarTela(JFrame frameList) {
 		
 		JDialog tela = new JDialog();
-		tela.setSize(600, 600);
+		tela.setSize(800, 600);
 		tela.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		tela.setLayout(null);
-		tela.setLocationRelativeTo(null);
-		tela.setTitle("Lista de Funcionario");
+		tela.setLocationRelativeTo(frameList);
+		tela.setTitle("Lista de Tarefas");
 		tela.setResizable(false);
 		
 		Container painel = tela.getContentPane();
@@ -50,7 +52,7 @@ public class FrameFuncionarioList {
 		
 		
 		//Criando a tabela
-		modelFuncionario = new DefaultTableModel(colunas, 10) {
+		modelTarefas = new DefaultTableModel(colunas, 10) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				
@@ -58,10 +60,10 @@ public class FrameFuncionarioList {
 			}
 		};
 		
-		tabelaFuncionario = new JTable(modelFuncionario);
-		tabelaFuncionario.getTableHeader().setReorderingAllowed(false);
-		scrollFuncionario = new JScrollPane(tabelaFuncionario);
-		scrollFuncionario.setBounds(10, 60, 560, 400);
+		tabelaTarefas = new JTable(modelTarefas);
+		tabelaTarefas.getTableHeader().setReorderingAllowed(false);
+		scrollTarefas = new JScrollPane(tabelaTarefas);
+		scrollTarefas.setBounds(10, 60, 760, 400);
 		
 		carregarDados();
 		
@@ -72,34 +74,35 @@ public class FrameFuncionarioList {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new FrameFuncionario(tela);
+				new FrameTarefas(tela);
 				carregarDados();
 			}
 		});
 		
 		painel.add(labelTitulo);
-		painel.add(scrollFuncionario);
+		painel.add(scrollTarefas);
 		painel.add(btnCadastro);
 		
 		tela.setVisible(true);
 	}
 	
 	private void carregarDados() {
-		FuncionarioDAO dao = new FuncionarioDAO();
-		List<Funcionario> funcionarios = dao.listar();
+		TarefasDAO dao = new TarefasDAO();
+		List<Tarefas> tarefas = dao.listar();
 		
-		Object[][] dados = new Object[funcionarios.size()][3];
+		Object[][] dados = new Object[tarefas.size()][4];
 		
 		int i = 0;
 		
-		for (Funcionario f : funcionarios) {
-			dados[i][0] = f.getMatricula();
-			dados[i][1] = f.getNome();
-			dados[i][2] = f.getCargo();
+		for (Tarefas t : tarefas) {
+			dados[i][0] = t.getCodigo();
+			dados[i][2] = t.getInicio();
+			dados[i][3] = t.getPrazo();
 			i++;
 		}
 		
-		modelFuncionario.setDataVector(dados, colunas);
+		modelTarefas.setDataVector(dados, colunas);
 	}
 	
 }
+

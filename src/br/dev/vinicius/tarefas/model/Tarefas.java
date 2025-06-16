@@ -2,6 +2,7 @@ package br.dev.vinicius.tarefas.model;
 
 import java.time.LocalDate;
 
+import br.dev.vinicius.tarefas.dao.FuncionarioDAO;
 import br.dev.vinicius.tarefas.utils.Utils;
 
 public class Tarefas {
@@ -13,25 +14,25 @@ public class Tarefas {
 	
 	
 	public Tarefas() {
-		this.codigo = Utils.gerarUUID8();
+		this.setCodigo(Utils.gerarUUID8());
 	}
 	public Tarefas(String titulo) {
-		this.codigo = Utils.gerarUUID8();
+		this.setCodigo(Utils.gerarUUID8());
 		this.titulo = titulo;
 	}
 	public Tarefas(String titulo, String descricao) {
-		this.codigo = Utils.gerarUUID8();
+		this.setCodigo(Utils.gerarUUID8());
 		this.titulo = titulo;
 		this.descricao = descricao;
 	}
 	public Tarefas(String titulo, String descricao, LocalDate inicio) {
-		this.codigo = Utils.gerarUUID8();
+		this.setCodigo(Utils.gerarUUID8());
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.inicio = inicio;
 	}
 	public Tarefas(String titulo, String descricao, LocalDate inicio, int prazo) {
-		this.codigo = Utils.gerarUUID8();
+		this.setCodigo(Utils.gerarUUID8());
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.inicio = inicio;
@@ -64,16 +65,22 @@ public class Tarefas {
 	}
 	
 	
-	
 	private LocalDate conclusao() {
 		LocalDate conclusao = inicio.plusDays(prazo);
 		return conclusao;
 		}
+	
 	
 	@Override
 	public String toString() {
 		String tarefa = titulo + "," + descricao + "," + inicio +
 				"," + prazo + "," + conclusao() + "\n";
 		return tarefa;
+	}
+	public String getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 }

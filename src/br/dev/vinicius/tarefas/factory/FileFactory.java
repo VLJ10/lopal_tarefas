@@ -39,7 +39,7 @@ public class FileFactory {
 
 		// Necessário para ler arquivo
 		frTarefas = new FileReader(tarefa);
-		brTarefas = new BufferedReader(frTarefas);
+		setBrTarefas(new BufferedReader(frTarefas));
 	}
 
 
@@ -58,6 +58,16 @@ public class FileFactory {
 	}
 	
 	public BufferedReader getBufferdReaderTarefas() {
-		return brArquivo;
+		return brTarefas;
+	}
+
+
+	public BufferedReader getBrTarefas() {
+		return brTarefas;
+	}
+
+
+	public void setBrTarefas(BufferedReader brTarefas) {
+		this.brTarefas = brTarefas;
 	}
 }
