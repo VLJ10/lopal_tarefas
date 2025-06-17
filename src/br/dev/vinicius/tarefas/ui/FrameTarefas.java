@@ -1,6 +1,10 @@
 package br.dev.vinicius.tarefas.ui;
 
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -8,12 +12,15 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import br.dev.vinicius.tarefas.dao.FuncionarioDAO;
+import br.dev.vinicius.tarefas.dao.TarefasDAO;
 import br.dev.vinicius.tarefas.model.Funcionario;
-import br.dev.vinicius.tarefas.model.Responsavel;
+
 import br.dev.vinicius.tarefas.model.Status;
+import br.dev.vinicius.tarefas.model.Tarefas;
 
 public class FrameTarefas {
 	
@@ -93,13 +100,22 @@ public class FrameTarefas {
 		//txt Data Conclusão
 		txtDataConclusao = new JTextField();
 		txtDataConclusao.setBounds(10, 270, 100, 30);
+		txtDataConclusao.setEnabled(false);
 		
 		//status
 		labelStatus = new JLabel("Status");
 		labelStatus.setBounds(10, 310, 100, 20);
-//		JComboBox comboResponsavel = new JComboBox;
+		JComboBox<Status> cmx = new JComboBox<>(Status.values());
+		cmx.setBounds(10, 330, 130, 30);
 		
-		comboResponsavel.setBounds(10, 330, 130, 30);
+		
+		//Responsavel
+		labelResponsavel = new JLabel("Responsável");
+		labelResponsavel.setBounds(10, 370, 100, 20);
+		
+		
+		comboResponsavel = new JComboBox<>(); 
+		comboResponsavel.setBounds(10, 390, 130, 30);
 		
 		FuncionarioDAO dao = new FuncionarioDAO();
 		List<Funcionario> funcionarios = dao.listar();
@@ -116,22 +132,46 @@ public class FrameTarefas {
 		String responsavelSelecionado = (String) comboResponsavel.getSelectedItem();
 		
 		
-		
-		
-		//Responsavel
-		labelResponsavel = new JLabel("Responsável");
-		labelResponsavel.setBounds(10, 370, 100, 20);
-		Funcionario f = new Funcionario();
-		JComboBox<String> fun = new JComboBox<>();
-		fun.setBounds(10, 400, 200, 30);
-		
-		
-		
 		btnSalvar = new JButton("Salvar");
 		btnSalvar.setBounds(10, 500, 150, 30);
 		
 		btnSair =new JButton("Sair");
 		btnSair.setBounds(170, 500, 150, 30);
+		
+		btnSalvar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+				Tarefas t = 
+					new Tarefas(
+							txtTituloTarefas.getText(),
+							txtDescricao.getText(),
+							LocalDate.parse(txtInicio.getText(), formatter),
+							Integer.parseInt(txtPrazo.getText())
+						);
+				TarefasDAO dao = new TarefasDAO(t);
+				dao.gravar();
+				JOptionPane.showMessageDialog(tela, 
+						txtTituloTarefas.getText() + "\nGravado com Sucesso", 
+						"Sucesso", JOptionPane.INFORMATION_MESSAGE);
+				limparFomulario();
+				
+			}
+		});
+		
+		btnSair.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int resposta = JOptionPane.showConfirmDialog(painel, "Deseja fechar o app");
+				if (resposta == 0) {
+					tela.dispose();
+				} else {
+
+				}
+			}
+		});
 		
 		painel.add(labelTituloTarefas);
 		painel.add(txtTituloTarefas);
@@ -146,12 +186,19 @@ public class FrameTarefas {
 		painel.add(labelStatus);
 		painel.add(comboResponsavel);
 		painel.add(labelResponsavel);
-		painel.add(fun);
+		painel.add(cmx);
 		painel.add(btnSalvar);
 		painel.add(btnSair);
 		
 		
 		
 		tela.setVisible(true);
+	}
+	private void limparFomulario() {
+		txtTituloTarefas.setText(null);
+		txtDescricao.setText(null);
+		txtInicio.setText(null);
+		txtPrazo.setText(null);
+		txtTituloTarefas.requestFocus();
 	}
 }

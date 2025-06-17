@@ -11,8 +11,17 @@ public class Tarefas {
 	private LocalDate inicio;
 	private int prazo;
 	private String codigo;
+	private String responsavel;
 	
 	
+	public String getResponsavel() {
+		Funcionario f = new Funcionario();
+		responsavel = f.getNome();
+		return responsavel;
+	}
+	public void setResponsavel(String responsavel) {
+		this.responsavel = responsavel;
+	}
 	public Tarefas() {
 		this.setCodigo(Utils.gerarUUID8());
 	}

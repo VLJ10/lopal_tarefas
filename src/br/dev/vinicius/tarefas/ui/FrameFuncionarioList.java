@@ -37,13 +37,13 @@ public class FrameFuncionarioList {
 		tela.setSize(600, 600);
 		tela.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		tela.setLayout(null);
-		tela.setLocationRelativeTo(null);
-		tela.setTitle("Lista de Funcionario");
+		tela.setLocationRelativeTo(frameList);
+		tela.setTitle("Lista de Tarefas");
 		tela.setResizable(false);
 		
 		Container painel = tela.getContentPane();
 		
-		labelTitulo = new JLabel("Cadastro de Funcionario");
+		labelTitulo = new JLabel("Cadastro de Funcionarios");
 		labelTitulo.setFont(new Font("Century", Font.BOLD, 30));
 		labelTitulo.setForeground(Color.ORANGE);
 		labelTitulo.setBounds(10, 10, 400, 40);

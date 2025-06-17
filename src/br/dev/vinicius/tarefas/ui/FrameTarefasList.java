@@ -27,7 +27,7 @@ public class FrameTarefasList {
 	private JTable tabelaTarefas;
 	private JScrollPane scrollTarefas;
 	private DefaultTableModel modelTarefas;
-	private String[] colunas = {"CODIGO", "RESPONSAVEL", "INICIO", "CONCLUSÂO"};
+	private String[] colunas = {"CODIGO", "RESPONSAVEL", "INICIO", "PRAZO"};
 	
 	public FrameTarefasList (JFrame frameList) {
 		criarTela(frameList);
@@ -45,7 +45,7 @@ public class FrameTarefasList {
 		
 		Container painel = tela.getContentPane();
 		
-		labelTitulo = new JLabel("Cadastro de Funcionario");
+		labelTitulo = new JLabel("Cadastro de Tarefas");
 		labelTitulo.setFont(new Font("Century", Font.BOLD, 30));
 		labelTitulo.setForeground(Color.ORANGE);
 		labelTitulo.setBounds(10, 10, 400, 40);
@@ -90,12 +90,14 @@ public class FrameTarefasList {
 		TarefasDAO dao = new TarefasDAO();
 		List<Tarefas> tarefas = dao.listar();
 		
+		
 		Object[][] dados = new Object[tarefas.size()][4];
 		
 		int i = 0;
 		
 		for (Tarefas t : tarefas) {
 			dados[i][0] = t.getCodigo();
+			dados[i][1] = t.getResponsavel();
 			dados[i][2] = t.getInicio();
 			dados[i][3] = t.getPrazo();
 			i++;
