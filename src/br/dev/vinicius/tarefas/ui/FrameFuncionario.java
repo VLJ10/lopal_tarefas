@@ -12,7 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import br.dev.vinicius.tarefas.dao.FuncionarioDAO;
+import br.dev.vinicius.tarefas.dao.TarefasDAO;
 import br.dev.vinicius.tarefas.model.Funcionario;
+import br.dev.vinicius.tarefas.model.Tarefas;
 
 public class FrameFuncionario {
 	

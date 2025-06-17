@@ -39,24 +39,29 @@ public class TarefasDAO {
 		try {
 			FileFactory ff = new FileFactory();
 			BufferedReader br = ff.getBufferdReaderTarefas();
-			
+			BufferedReader br1 = ff.getBufferdReaderArquivo();
 			String linha = "";
+			String linha1 = "";
 			
 			br.readLine();
+			br1.readLine();
 			
 			while (linha != null) {
 				
 				linha = br.readLine();
+				linha1 = br1.readLine();
 				
-				if (linha != null) {
+				if (linha != null && linha1 != null) {
 					String tarefasStr[] = linha.split(",");
+					String tarefasTsr[] = linha1.split(",");
+					
 					
 					Tarefas tarefa = new Tarefas();
 					tarefa.setTitulo(tarefasStr[0]);
 					tarefa.setDescrição(tarefasStr[1]);
-					
 					tarefa.setInicio(LocalDate.parse(tarefasStr[2]));
 					tarefa.setPrazo(Integer.parseInt(tarefasStr[3]));
+					tarefa.setResponsavel(tarefasTsr[0]);
 					
 					tarefas.add(tarefa);
 					

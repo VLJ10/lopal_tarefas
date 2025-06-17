@@ -143,13 +143,17 @@ public class FrameTarefas {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+				Funcionario f = new Funcionario();
 				Tarefas t = 
 					new Tarefas(
 							txtTituloTarefas.getText(),
 							txtDescricao.getText(),
 							LocalDate.parse(txtInicio.getText(), formatter),
-							Integer.parseInt(txtPrazo.getText())
+							Integer.parseInt(txtPrazo.getText()),
+							responsavelSelecionado
 						);
+				t.setResponsavel(f.getNome());
+				t.getResponsavel();
 				TarefasDAO dao = new TarefasDAO(t);
 				dao.gravar();
 				JOptionPane.showMessageDialog(tela, 

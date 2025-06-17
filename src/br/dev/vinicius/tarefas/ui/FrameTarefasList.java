@@ -91,11 +91,13 @@ public class FrameTarefasList {
 		List<Tarefas> tarefas = dao.listar();
 		
 		
-		Object[][] dados = new Object[tarefas.size()][4];
+		Object[][] dados = new Object[tarefas.size()][5];
 		
 		int i = 0;
 		
 		for (Tarefas t : tarefas) {
+			
+			
 			dados[i][0] = t.getCodigo();
 			dados[i][1] = t.getResponsavel();
 			dados[i][2] = t.getInicio();

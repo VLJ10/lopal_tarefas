@@ -15,8 +15,6 @@ public class Tarefas {
 	
 	
 	public String getResponsavel() {
-		Funcionario f = new Funcionario();
-		responsavel = f.getNome();
 		return responsavel;
 	}
 	public void setResponsavel(String responsavel) {
@@ -46,6 +44,14 @@ public class Tarefas {
 		this.descricao = descricao;
 		this.inicio = inicio;
 		this.prazo = prazo;
+	}
+	public Tarefas(String titulo, String descricao, LocalDate inicio, int prazo, String responsavel) {
+		this.setCodigo(Utils.gerarUUID8());
+		this.titulo = titulo;
+		this.descricao = descricao;
+		this.inicio = inicio;
+		this.prazo = prazo;
+		this.responsavel = responsavel;
 	}
 	
 	public String getTitulo() {
